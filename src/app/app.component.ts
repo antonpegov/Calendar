@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { CalendarComponent } from "./calendar/calendar.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
 
-  constructor() { }
+  title: string;
+
+  constructor() {
+    this.title = 'amaizing calendar module for Angular';
+   }
 
   ngOnInit() {
   }

@@ -1,0 +1,78 @@
+@import '~@angular/material/_theming.scss';
+
+
+@include mat-core();
+$app-color-primary: mat-palette($mat-grey, 200);
+//$app-color-primary: color("#4a5559");
+$app-color-accent: mat-palette($mat-cyan, 200);
+/*$app-color-accent: #ffb900;*/
+$color-app-warn: mat-palette($mat-red);
+$app-theme: mat-light-theme($app-color-primary, $app-color-accent, $color-app-warn);
+
+@include angular-material-theme($app-theme);
+
+//To add another secondary theme: https://github.com/angular/material2/blob/master/guides/theming.md
+
+.dark-theme {
+  $dark-primary: mat-palette($mat-indigo);
+  $dark-accent: mat-palette($mat-brown);
+
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent);
+
+  @include angular-material-theme($dark-theme);
+}
+
+$app-accent: #ffb900;
+$app-primary: #4a5559;
+$app-warn: #F44336;
+
+$app-black: #000;
+$app-dark: #333333;
+$app-grey: #818181;
+$app-light: #e5e5e5;
+$app-superlight: #f5f5f5;
+$app-white: #fff;
+
+$selected-bg: #565f64;
+$app-toolbar-height: 70px;
+$app-toolbar-height-opened: 120px;
+$app-sidenav-width: 240px;
+
+.app-bg {
+  &.primary {
+    background-color: #4A5459;
+    //background-color: $app-color-primary;
+  }
+
+  &.accent {
+    background-color: #FFB900;
+    //background-color: $app-color-accent;
+  }
+
+  &.warn {
+    //background-color: $color-app-warn;
+  }
+}
+
+.app-font {
+
+  &.black {
+    color: #000;
+  }
+
+  &.dark {
+    color: #333333;
+  }
+
+  &.grey {
+    color: #818181;
+  }
+
+  &.light {
+    color: #e5e5e5;
+  }
+
+  &.white {
+    color: #fff;
+  }
+}

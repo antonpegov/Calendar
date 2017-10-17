@@ -10,6 +10,15 @@ import { CalendarComponent } from './calendar.component';
   imports: [
     AppCommonModule
   ],
-  declarations: [SearchComponent, NavigateComponent, BodyComponent, ItemComponent, CalendarComponent]
+  declarations: [
+    SearchComponent, 
+    NavigateComponent, 
+    BodyComponent, 
+    ItemComponent,
+    CalendarComponent
+  ],
+  exports: [
+    CalendarComponent
+  ]
 })
 export class CalendarModule { }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-navigate',
+  selector: 'app-cal-navigate',
   templateUrl: './navigate.component.html',
-  styleUrls: ['./navigate.component.css']
+  styleUrls: ['./navigate.component.scss']
 })
 export class NavigateComponent implements OnInit {
 

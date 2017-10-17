@@ -1,0 +1,23 @@
+@import 'app/app.theme';
+
+mat-card {
+
+    display: flex !important;
+    flex-direction: column;
+
+    > mat-toolbar {
+
+        margin-left: -24px !important;
+        margin-top: -24px !important;
+        width: calc(100% + 48px) !important;
+        box-shadow: 0px 5px 10px -8px $app-dark;
+
+        mat-toolbar-row {
+
+            flex-direction: row;
+            justify-content: flex-end;
+
+        }
+    }
+
+}
