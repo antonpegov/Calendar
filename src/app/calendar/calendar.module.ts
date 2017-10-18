@@ -5,6 +5,8 @@ import { NavigateComponent } from './navigate/navigate.component';
 import { BodyComponent } from './body/body.component';
 import { ItemComponent } from './item/item.component';
 import { CalendarComponent } from './calendar.component';
+import { CalendarService } from './calendar.service';
+import { Ng2Webstorage, LocalStorageService, SessionStorageService} from "ngx-webstorage";
 
 @NgModule({
   imports: [
@@ -19,6 +21,10 @@ import { CalendarComponent } from './calendar.component';
   ],
   exports: [
     CalendarComponent
+  ],
+  providers:[
+    CalendarService,
+    LocalStorageService
   ]
 })
 export class CalendarModule { }

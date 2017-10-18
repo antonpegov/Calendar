@@ -1,3 +1,9 @@
 <p>
-  navigate works!
+  <button mat-icon-button color="grey" #prev (click)="click.next('prev')">
+      <mat-icon>arrow_back</mat-icon>
+  </button>
+  {{month}} {{year}}
+  <button mat-icon-button color="grey" #next (click)="click.next('next')">
+      <mat-icon>arrow_forward</mat-icon>
+  </button>
 </p>

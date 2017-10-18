@@ -1,6 +1,8 @@
 <mat-grid-list cols="7" rowHeight="1:1">
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>2</mat-grid-tile>
-    <mat-grid-tile>3</mat-grid-tile>
-    <mat-grid-tile>4</mat-grid-tile>
+    <mat-grid-tile *ngFor="let cell of grid" 
+            [ngClass]="{'this-month': cell.thisMonth}">
+        <span class="info">
+            {{!cell.hideDayOfWeek ? cell.dayOfWeek+', ' : ''}}{{cell.dayOfMonth}}
+        </span>
+    </mat-grid-tile>
 </mat-grid-list>

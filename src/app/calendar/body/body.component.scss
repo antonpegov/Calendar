@@ -1,0 +1,15 @@
+@import '../../app.theme';
+
+.mat-grid-tile {
+    border: 1px solid $app-light;
+    font-size: 12px;
+    color: $app-grey;
+    &.this-month {
+        background-color: $app-superlight;
+    }
+    .info {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+}
