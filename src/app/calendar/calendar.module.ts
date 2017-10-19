@@ -9,10 +9,12 @@ import { CalendarService } from './calendar.service';
 import { Ng2Webstorage, LocalStorageService, SessionStorageService} from "ngx-webstorage";
 import { AddEventDialogComponent } from './modals/add-event-dialog/add-event-dialog.component';
 import { MatDialog } from '@angular/material';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    AppCommonModule
+    AppCommonModule,
+    FormsModule
   ],
   declarations: [
     SearchComponent, 

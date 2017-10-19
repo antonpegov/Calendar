@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { EventDate, Happening } from '../../_models/';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-event-dialog',
@@ -8,12 +10,29 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 })
 export class AddEventDialogComponent implements OnInit {
 
-  constructor(
-    public dialogRef: MatDialogRef<AddEventDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  participants: string;
+  title: string;
+  text: string;
+  date: string;
 
-  onCalcelClick(): void {
+  constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public data: EventDate,
+    public dialogRef: MatDialogRef<AddEventDialogComponent>
+  ) {
+    this.date = `${data.day} ${moment.months(data.month)} ${data.year}`;
+  }
+
+  onSubmitClick(): void {
+    let event = new Happening(this.data, this.participants.split(','), this.title, this.text);
+    this.dialogRef.close(event);
+  }
+
+  private makeArray(str){
+    return str.splin
+  }
+
+  onCancelClick(): void {
     this.dialogRef.close();
   }
 

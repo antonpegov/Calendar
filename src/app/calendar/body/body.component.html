@@ -4,8 +4,12 @@
         <span class="info">
             {{!cell.hideDayOfWeek ? cell.dayOfWeek+', ' : ''}}{{cell.dayOfMonth}}
         </span>
+        <span class=text>
+            <b>{{ (cell.event$ | async)?.title }}</b> <br/>
+            {{ (cell.event$ | async)?.participants }}
+        </span>
         <button mat-icon-button disableRipple color="accent" class="add-event" title="Click to add new event"
-                *ngIf="cell.active" (click)="onAddEventClick($event)" >
+                *ngIf="cell.active && !(cell.event$ | async)" (click)="onAddEventClick($event, i)" >
             <mat-icon>add_circle</mat-icon>
         </button>
     </mat-grid-tile>

@@ -1,0 +1,25 @@
+@import '../../../app.theme';
+
+textarea {
+    resize: none;
+    padding: 3px 5px;
+}
+input{
+    width: 95%;
+    padding: 3px 5px;
+    border-color: rgba(223, 223, 223, 0.52)
+}
+input,textarea{
+    background-color: #fafafa;
+
+}
+::-webkit-input-placeholder{
+    color: rgba(128, 128, 128, 0.64);
+}
+button{
+    margin-right: 15px;
+    padding: 5px 10px;
+    color: $app-dark;
+    cursor: pointer;
+
+}

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+//import { FormsModule } from '@angular/forms';
 //import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { ReversePipe } from 'ngx-pipes/src/app/pipes/array/reverse';
@@ -25,6 +26,6 @@ import { AddEventDialogComponent } from './calendar/modals/add-event-dialog/add-
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
 
 }
