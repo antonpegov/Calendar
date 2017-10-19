@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { AppCommonModule } from '../app-common/app-common.module';
 import { SearchComponent } from './search/search.component';
 import { NavigateComponent } from './navigate/navigate.component';
-import { BodyComponent } from './body/body.component';
+import { BodyComponent} from './body/body.component';
 import { ItemComponent } from './item/item.component';
 import { CalendarComponent } from './calendar.component';
 import { CalendarService } from './calendar.service';
 import { Ng2Webstorage, LocalStorageService, SessionStorageService} from "ngx-webstorage";
+import { AddEventDialogComponent } from './modals/add-event-dialog/add-event-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -17,12 +19,15 @@ import { Ng2Webstorage, LocalStorageService, SessionStorageService} from "ngx-we
     NavigateComponent, 
     BodyComponent, 
     ItemComponent,
-    CalendarComponent
+    CalendarComponent,
+    AddEventDialogComponent
   ],
   exports: [
-    CalendarComponent
+    CalendarComponent,
+    AddEventDialogComponent
   ],
   providers:[
+    MatDialog,
     CalendarService,
     LocalStorageService
   ]

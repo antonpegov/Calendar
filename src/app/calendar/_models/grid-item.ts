@@ -10,10 +10,11 @@ export class GridItem {
     thisMonth: boolean = false;
     dayOfMonth: number;
     events: Array<Happening>;
+    active: boolean = false;
    
     /**
     * Универсальный конструктор
-    * @param  {Partial<AggregatedDataSourceItem>} init?
+    * @param  {Partial<GridItem>} init?
     */
     public constructor(init?:Partial<GridItem>) {
         Object.assign(this, init);

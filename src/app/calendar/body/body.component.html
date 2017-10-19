@@ -1,8 +1,12 @@
 <mat-grid-list cols="7" rowHeight="1:1">
-    <mat-grid-tile *ngFor="let cell of grid" 
-            [ngClass]="{'this-month': cell.thisMonth}">
+    <mat-grid-tile *ngFor="let cell of grid; let i = index" (click)="click.next(i)"
+            [ngClass]="{'this-month': cell.thisMonth, 'active': cell.active}">
         <span class="info">
             {{!cell.hideDayOfWeek ? cell.dayOfWeek+', ' : ''}}{{cell.dayOfMonth}}
         </span>
+        <button mat-icon-button disableRipple color="accent" class="add-event" title="Click to add new event"
+                *ngIf="cell.active" (click)="onAddEventClick($event)" >
+            <mat-icon>add_circle</mat-icon>
+        </button>
     </mat-grid-tile>
 </mat-grid-list>

@@ -4,7 +4,7 @@
 @include mat-core();
 $app-color-primary: mat-palette($mat-grey, 200);
 //$app-color-primary: color("#4a5559");
-$app-color-accent: mat-palette($mat-cyan, 200);
+$app-color-accent: mat-palette($mat-cyan, 400);
 /*$app-color-accent: #ffb900;*/
 $color-app-warn: mat-palette($mat-red);
 $app-theme: mat-light-theme($app-color-primary, $app-color-accent, $color-app-warn);
@@ -22,7 +22,7 @@ $app-theme: mat-light-theme($app-color-primary, $app-color-accent, $color-app-wa
   @include angular-material-theme($dark-theme);
 }
 
-$app-accent: #ffb900;
+$app-accent: #26c6da;
 $app-primary: #4a5559;
 $app-warn: #F44336;
 
