@@ -4,7 +4,7 @@ import { GridItem, EventDate, Happening } from '../_models/';
 import { CalendarService } from '../calendar.service';
 import { Subject, Observable } from 'rxjs';
 import * as moment from 'moment';
-import { AddEventDialogComponent } from '../modals/add-event-dialog/add-event-dialog.component';
+import { AddEventDialogComponent } from '../_modals/';
 
 @Component({
   selector: 'app-cal-body',
@@ -49,15 +49,20 @@ export class BodyComponent implements OnInit {
       this.setActiveCell(index);
     })
   }
-  
-  public onAddEventClick(e, index): void {
+
+  public onRemoveEventClick = (e, i) => {
+    let event = this.grid[i];
+    this.$service.removeEvent(this.grid[i].date);
+    this.grid[i].event.next(undefined);
+  }
+
+  public onAddEventClick = (e, index): void => {
     let dialogRef = this.$dialog.open(AddEventDialogComponent, {
       width: '400px',
       data: this.grid[index].date
     });
 
     dialogRef.afterClosed().subscribe((result: Happening) => {
-      console.log(result);
       if(result){
         this.grid[index].event.next(result);
         this.$service.addEvent(result);
@@ -119,7 +124,7 @@ export class BodyComponent implements OnInit {
         item.dayOfMonth = 1 + index - day.daysInMonth() - firstDayIndex;
       } else {
         console.error('Осталась не обрабьботанная дата!');
-      }debugger
+      }
       item.date = new EventDate(year, month, item.dayOfMonth)
       this.$service.chechForEvent(item);
     });

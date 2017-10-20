@@ -1,0 +1,11 @@
+<p><input [(ngModel)]="title" placeholder="Событие"></p>
+<p><input [(ngModel)]="date" placeholder="" disabled></p>
+<p><input [(ngModel)]="participants" placeholder="Имена участников через запятую"></p>
+<br/>
+<p>
+  <textarea [(ngModel)]="text" rows="10" cols="45" name="text" placeholder="Описание">
+  </textarea>
+</p>
+<br/>
+<button mat-raised-button class='submit' color="accent" disableRipple (click)="onSubmitClick()">Сохранить</button>
+<button mat-raised-button class='abort' disableRipple (click)="onCancelClick()">Закрыть</button>

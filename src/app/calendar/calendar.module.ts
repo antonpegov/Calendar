@@ -3,30 +3,31 @@ import { AppCommonModule } from '../app-common/app-common.module';
 import { SearchComponent } from './search/search.component';
 import { NavigateComponent } from './navigate/navigate.component';
 import { BodyComponent} from './body/body.component';
-import { ItemComponent } from './item/item.component';
 import { CalendarComponent } from './calendar.component';
 import { CalendarService } from './calendar.service';
 import { Ng2Webstorage, LocalStorageService, SessionStorageService} from "ngx-webstorage";
-import { AddEventDialogComponent } from './modals/add-event-dialog/add-event-dialog.component';
+import { AddEventDialogComponent, NewEventDialogComponent } from './_modals/';
 import { MatDialog } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { NgPipesModule } from 'ngx-pipes';
+
 
 @NgModule({
   imports: [
     AppCommonModule,
-    FormsModule
+    FormsModule,
+    NgPipesModule
   ],
   declarations: [
-    SearchComponent, 
-    NavigateComponent, 
-    BodyComponent, 
-    ItemComponent,
+    SearchComponent,
+    NavigateComponent,
+    BodyComponent,
     CalendarComponent,
-    AddEventDialogComponent
+    AddEventDialogComponent,
+    NewEventDialogComponent
   ],
   exports: [
-    CalendarComponent,
-    AddEventDialogComponent
+    CalendarComponent
   ],
   providers:[
     MatDialog,

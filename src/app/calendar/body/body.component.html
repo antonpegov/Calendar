@@ -1,6 +1,7 @@
 <mat-grid-list cols="7" rowHeight="1:1">
     <mat-grid-tile *ngFor="let cell of grid; let i = index" (click)="click.next(i)"
-            [ngClass]="{'this-month': cell.thisMonth, 'active': cell.active}">
+            [ngClass]="{'this-month': cell.thisMonth, 'active': cell.active}"
+            title="{{(cell.event$ | async)?.text}}">
         <span class="info">
             {{!cell.hideDayOfWeek ? cell.dayOfWeek+', ' : ''}}{{cell.dayOfMonth}}
         </span>
@@ -8,9 +9,13 @@
             <b>{{ (cell.event$ | async)?.title }}</b> <br/>
             {{ (cell.event$ | async)?.participants }}
         </span>
-        <button mat-icon-button disableRipple color="accent" class="add-event" title="Click to add new event"
+        <button mat-icon-button disableRipple color="accent" class="add-event" title="Добавить событие"
                 *ngIf="cell.active && !(cell.event$ | async)" (click)="onAddEventClick($event, i)" >
             <mat-icon>add_circle</mat-icon>
         </button>
+        <button mat-icon-button disableRipple color="primary" class="remove-event" title="Удалить событие"
+                *ngIf="cell.active && (cell.event$ | async)" (click)="onRemoveEventClick($event, i)" >
+        <mat-icon>cancel</mat-icon>
+</button>
     </mat-grid-tile>
 </mat-grid-list>

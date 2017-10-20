@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AddEventDialogComponent } from './modals/add-event-dialog/add-event-dialog.component';
 import { Happening } from './_models/index';
 import { MatDialog } from '@angular/material';
 import { CalendarService } from './calendar.service';
+import { NewEventDialogComponent } from './_modals/';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css'],
-  
+
 })
 export class CalendarComponent implements OnInit {
 
@@ -21,7 +21,7 @@ export class CalendarComponent implements OnInit {
   }
 
   public onNewEventClick(): void {
-    let dialogRef = this.$dialog.open(AddEventDialogComponent, {
+    let dialogRef = this.$dialog.open(NewEventDialogComponent, {
       width: '400px',
       data:{}
     });

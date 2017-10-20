@@ -3,15 +3,17 @@ import { Happening, GridItem, EventDate } from './_models/';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
 import * as moment from 'moment';
+import 'moment/locale/ru';
 
 @Injectable()
 export class CalendarService {
 
-  state: State;
-  newDate$: BehaviorSubject<moment.Moment>;
-  day$ = new BehaviorSubject<string>('init');
-  month$ = new BehaviorSubject<string>('init');
-  year$ = new BehaviorSubject<number>(0);
+  private state: State;
+  public newDate$: BehaviorSubject<moment.Moment>;
+  public day$ = new BehaviorSubject<string>('init');
+  public month$ = new BehaviorSubject<string>('init');
+  public year$ = new BehaviorSubject<number>(0);
+  public monthsA = 'января,февраля,марта,апреля,мая,июня,июля,августа,сентября,октября,ноября,декабря'.split(',');
 
   constructor(
     private $storage: LocalStorageService,
@@ -60,8 +62,20 @@ export class CalendarService {
     });
   };
 
-  public addEvent = (event: Happening): void => {
+  public addEvent = (event: Happening): void => {debugger
     this.state.events.push(event);
+    this.save();
+  }
+
+  public removeEvent = (date: EventDate): void => {
+    let i: number;
+    for (let {item,index} of this.state.events.map((item, index) => ({ item, index }))){
+      if (EventDate.equal(item.date, date)){
+        i = index;
+        break;
+      }
+    }
+    this.state.events.splice(i,1);
     this.save();
   }
 

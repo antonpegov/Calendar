@@ -1,0 +1,35 @@
+<form #f="ngForm">
+  <p><input name="title" [(ngModel)]="title" placeholder="Событие"  required></p>
+  <p>
+    <span>
+      Год:
+      <select name="year" [(ngModel)]="year" (change)="onChange('year')" required>
+          <option [value]="y" *ngFor="let y of range(2010,2031)">{{y}}</option>
+      </select>
+    </span>
+    <span *ngIf="year">
+      Месяц:
+      <select name="month" [(ngModel)]="month" (change)="onChange('month')" required>
+          <option [value]="months.indexOf(m)" *ngFor="let m of months">{{m}}</option>
+      </select>
+    </span>
+    <span *ngIf="year && month" required>
+      День:
+      <select name="day"  [(ngModel)]="day" (change)="onChange()">
+          <option [value]="d" *ngFor="let d of range(1,m([year,month,1]).daysInMonth()+1)">{{d}}</option>
+      </select>
+    </span>
+  </p>
+  <p><input  name="m1" [(ngModel)]="participants" placeholder="Имена участников через запятую" ></p>
+  <br/>
+  <p>
+    <textarea  name="m2" [(ngModel)]="text" rows="10" cols="45" name="text" placeholder="Описание">
+    </textarea>
+  </p>
+  <br/>
+  <button mat-raised-button class='submit' color="accent"
+        disableRipple (click)="onSubmitClick()" [disabled]="!f.form.valid">
+    Сохранить
+  </button>
+  <button mat-raised-button class='abort' disableRipple (click)="onCancelClick()">Закрыть</button>
+</form>

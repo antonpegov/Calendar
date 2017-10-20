@@ -16,17 +16,25 @@
         }
     }
     .info {
-        position: absolute;
-        top: 10px;
-        left: 10px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
     }
-    .add-event{
-        transition: all .5s ease-in-out;
-        position: absolute;
-        bottom: 0px;
-        right: 0px;
+    button {
+      transition: all .5s ease-in-out;
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      &:hover {
+        color: $app-accent - 30%;
+      }
+      &.add-event{
+      }
+      &.remove-event{
+        color: lightcoral;
         &:hover {
-            color: $app-accent - 30%;
+          color:  red;
         }
     }
+  }
 }

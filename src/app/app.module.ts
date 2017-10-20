@@ -8,7 +8,8 @@ import { ReversePipe } from 'ngx-pipes/src/app/pipes/array/reverse';
 import { AppCommonModule } from './app-common/app-common.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { CalendarComponent } from './calendar/calendar.component';
-import { AddEventDialogComponent } from './calendar/modals/add-event-dialog/add-event-dialog.component';
+import { AddEventDialogComponent, NewEventDialogComponent } from './calendar/_modals/';
+import { SelectModule } from 'ng2-select';
 
 @NgModule({
   declarations: [
@@ -18,10 +19,12 @@ import { AddEventDialogComponent } from './calendar/modals/add-event-dialog/add-
     BrowserAnimationsModule,
     AppCommonModule,
     BrowserModule,
+    SelectModule,
     CalendarModule
   ],
   entryComponents: [
-    AddEventDialogComponent
+    AddEventDialogComponent,
+    NewEventDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
