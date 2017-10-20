@@ -49,7 +49,7 @@ export class BodyComponent implements OnInit {
       this.setActiveCell(index);
     })
   }
-
+  
   public onAddEventClick(e, index): void {
     let dialogRef = this.$dialog.open(AddEventDialogComponent, {
       width: '400px',

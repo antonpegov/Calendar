@@ -73,7 +73,7 @@ AppCommonModule = __decorate([
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <!-- <h1>\n    Welcome to {{title}}!\n  </h1> -->\n  <app-calendar></app-calendar>\n</div>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div style=\"text-align:center\">\r\n  <!-- <h1>\r\n    Welcome to {{title}}!\r\n  </h1> -->\r\n  <app-calendar></app-calendar>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -295,7 +295,7 @@ var Happening = (function () {
 /***/ "../../../../../src/app/calendar/body/body.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-grid-list cols=\"7\" rowHeight=\"1:1\">\n    <mat-grid-tile *ngFor=\"let cell of grid; let i = index\" (click)=\"click.next(i)\"\n            [ngClass]=\"{'this-month': cell.thisMonth, 'active': cell.active}\">\n        <span class=\"info\">\n            {{!cell.hideDayOfWeek ? cell.dayOfWeek+', ' : ''}}{{cell.dayOfMonth}}\n        </span>\n        <span class=text>\n            <b>{{ (cell.event$ | async)?.title }}</b> <br/>\n            {{ (cell.event$ | async)?.participants }}\n        </span>\n        <button mat-icon-button disableRipple color=\"accent\" class=\"add-event\" title=\"Click to add new event\"\n                *ngIf=\"cell.active && !(cell.event$ | async)\" (click)=\"onAddEventClick($event, i)\" >\n            <mat-icon>add_circle</mat-icon>\n        </button>\n    </mat-grid-tile>\n</mat-grid-list>\n"
+module.exports = "<mat-grid-list cols=\"7\" rowHeight=\"1:1\">\r\n    <mat-grid-tile *ngFor=\"let cell of grid; let i = index\" (click)=\"click.next(i)\"\r\n            [ngClass]=\"{'this-month': cell.thisMonth, 'active': cell.active}\">\r\n        <span class=\"info\">\r\n            {{!cell.hideDayOfWeek ? cell.dayOfWeek+', ' : ''}}{{cell.dayOfMonth}}\r\n        </span>\r\n        <span class=text>\r\n            <b>{{ (cell.event$ | async)?.title }}</b> <br/>\r\n            {{ (cell.event$ | async)?.participants }}\r\n        </span>\r\n        <button mat-icon-button disableRipple color=\"accent\" class=\"add-event\" title=\"Click to add new event\"\r\n                *ngIf=\"cell.active && !(cell.event$ | async)\" (click)=\"onAddEventClick($event, i)\" >\r\n            <mat-icon>add_circle</mat-icon>\r\n        </button>\r\n    </mat-grid-tile>\r\n</mat-grid-list>\r\n"
 
 /***/ }),
 
@@ -504,7 +504,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/calendar/calendar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card>\n    <mat-toolbar color=\"primary\">\n      <app-cal-search></app-cal-search>\n    </mat-toolbar>\n  <app-cal-navigate style='float:left'></app-cal-navigate>\n  <app-cal-body></app-cal-body>\n</mat-card>\n\n"
+module.exports = "<mat-card>\r\n    <mat-toolbar color=\"primary\">\r\n      <button (click)=\"onNewEventClick()\">Добавить</button>\r\n      <app-cal-search></app-cal-search>\r\n    </mat-toolbar>\r\n  <app-cal-navigate style='float:left'></app-cal-navigate>\r\n  <app-cal-body></app-cal-body>\r\n</mat-card>\r\n\r\n"
 
 /***/ }),
 
@@ -514,6 +514,9 @@ module.exports = "<mat-card>\n    <mat-toolbar color=\"primary\">\n      <app-ca
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalendarComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modals_add_event_dialog_add_event_dialog_component__ = __webpack_require__("../../../../../src/app/calendar/modals/add-event-dialog/add-event-dialog.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__calendar_service__ = __webpack_require__("../../../../../src/app/calendar/calendar.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -524,10 +527,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var CalendarComponent = (function () {
-    function CalendarComponent() {
+    function CalendarComponent($service, $dialog) {
+        this.$service = $service;
+        this.$dialog = $dialog;
     }
     CalendarComponent.prototype.ngOnInit = function () {
+    };
+    CalendarComponent.prototype.onNewEventClick = function () {
+        var _this = this;
+        var dialogRef = this.$dialog.open(__WEBPACK_IMPORTED_MODULE_1__modals_add_event_dialog_add_event_dialog_component__["a" /* AddEventDialogComponent */], {
+            width: '400px',
+            data: {}
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log(result);
+            if (result) {
+                //this.grid[index].event.next(result);
+                _this.$service.addEvent(result);
+            }
+        });
     };
     return CalendarComponent;
 }());
@@ -537,9 +559,10 @@ CalendarComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/calendar/calendar.component.html"),
         styles: [__webpack_require__("../../../../../src/app/calendar/calendar.component.css")],
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__calendar_service__["a" /* CalendarService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__calendar_service__["a" /* CalendarService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_material__["f" /* MatDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_material__["f" /* MatDialog */]) === "function" && _b || Object])
 ], CalendarComponent);
 
+var _a, _b;
 //# sourceMappingURL=calendar.component.js.map
 
 /***/ }),
@@ -763,7 +786,7 @@ var _a;
 /***/ "../../../../../src/app/calendar/item/item.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  item works!\n</p>\n"
+module.exports = "<p>\r\n  item works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -824,7 +847,7 @@ ItemComponent = __decorate([
 /***/ "../../../../../src/app/calendar/modals/add-event-dialog/add-event-dialog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p><input [(ngModel)]=\"title\" placeholder=\"Событие\"></p>\n<p><input [(ngModel)]=\"date\" placeholder=\"\" disabled></p>\n<p><input [(ngModel)]=\"participants\" placeholder=\"Имена участников\"></p>\n<br/>\n<p>\n  <textarea [(ngModel)]=\"text\" rows=\"10\" cols=\"45\" name=\"text\" placeholder=\"Описание\">\n  </textarea>\n</p>\n<br/>\n<button (click)=\"onSubmitClick()\">Сохранить</button>\n<button (click)=\"onCancelClick()\">Закрыть</button>\n"
+module.exports = "<p><input [(ngModel)]=\"title\" placeholder=\"Событие\"></p>\r\n<p><input [(ngModel)]=\"date\" placeholder=\"\" disabled></p>\r\n<p><input [(ngModel)]=\"participants\" placeholder=\"Имена участников\"></p>\r\n<br/>\r\n<p>\r\n  <textarea [(ngModel)]=\"text\" rows=\"10\" cols=\"45\" name=\"text\" placeholder=\"Описание\">\r\n  </textarea>\r\n</p>\r\n<br/>\r\n<button (click)=\"onSubmitClick()\">Сохранить</button>\r\n<button (click)=\"onCancelClick()\">Закрыть</button>\r\n"
 
 /***/ }),
 
@@ -910,7 +933,7 @@ var _a, _b;
 /***/ "../../../../../src/app/calendar/navigate/navigate.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  <button mat-icon-button color=\"grey\" #prev (click)=\"click.next('prev')\">\n      <mat-icon>arrow_back</mat-icon>\n  </button>\n  {{month}} {{year}}\n  <button mat-icon-button color=\"grey\" #next (click)=\"click.next('next')\">\n      <mat-icon>arrow_forward</mat-icon>\n  </button>\n</p>\n"
+module.exports = "<p>\r\n  <button mat-icon-button color=\"grey\" #prev (click)=\"click.next('prev')\">\r\n      <mat-icon>arrow_back</mat-icon>\r\n  </button>\r\n  {{month}} {{year}}\r\n  <button mat-icon-button color=\"grey\" #next (click)=\"click.next('next')\">\r\n      <mat-icon>arrow_forward</mat-icon>\r\n  </button>\r\n</p>\r\n"
 
 /***/ }),
 
@@ -993,7 +1016,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/calendar/search/search.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  search works!\n</p>\n"
+module.exports = "<p>\r\n  search works!\r\n</p>\r\n"
 
 /***/ }),
 
