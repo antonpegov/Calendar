@@ -17,11 +17,12 @@ export class NavigateComponent implements OnInit {
   public clicked$ = this.click.asObservable();
   public month;
   public year;
+  public todaySelected$;
 
-  constructor($service: CalendarService) {
+  constructor(private $service: CalendarService) {
     $service.month$.subscribe(m => this.month = m);
     $service.year$.subscribe(y => this.year = y);
-    this.clicked$.subscribe(x => $service.move(x));
+    this.clicked$.subscribe((x: string) => $service.move(x));
   }
 
   ngOnInit() {

@@ -1,9 +1,15 @@
-<p>
+<span>
   <button mat-icon-button #prev (click)="click.next('prev')">
-      <mat-icon color="accent">arrow_back</mat-icon>
+    <mat-icon color="accent">arrow_back</mat-icon>
   </button>
   <span class="date">{{month | ucwords}} {{year}}</span>
   <button mat-icon-button #next (click)="click.next('next')">
-      <mat-icon color="accent">arrow_forward</mat-icon>
+    <mat-icon color="accent">arrow_forward</mat-icon>
   </button>
-</p>
+</span>
+<span>
+  <button mat-raised-button disableRipple class="today"
+        (click)="click.next('today')">
+        Сегодня
+  </button>
+</span>

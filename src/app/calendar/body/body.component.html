@@ -2,20 +2,28 @@
     <mat-grid-tile *ngFor="let cell of grid; let i = index" (click)="click.next(i)"
             [ngClass]="{'this-month': cell.thisMonth, 'active': cell.active}"
             title="{{(cell.event$ | async)?.text}}">
-        <span class="info">
-            {{!cell.hideDayOfWeek ? cell.dayOfWeek+', ' : ''}}{{cell.dayOfMonth}}
-        </span>
-        <span class=text>
-            <b>{{ (cell.event$ | async)?.title }}</b> <br/>
-            {{ (cell.event$ | async)?.participants }}
-        </span>
+      <span class="info">
+          {{!cell.hideDayOfWeek ? cell.dayOfWeek+', ' : ''}}{{cell.dayOfMonth}}
+      </span>
+      <span class=text>
+          <b>{{ (cell.event$ | async)?.title }}</b> <br/>
+          {{ (cell.event$ | async)?.participants }}
+      </span>
+      <span *ngIf="cell.active && !(cell.event$ | async)" >
         <button mat-icon-button disableRipple color="accent" class="add-event" title="Добавить событие"
-                *ngIf="cell.active && !(cell.event$ | async)" (click)="onAddEventClick($event, i)" >
+                (click)="onAddEventClick($event, i)" >
             <mat-icon>add_circle</mat-icon>
         </button>
-        <button mat-icon-button disableRipple color="primary" class="remove-event" title="Удалить событие"
-                *ngIf="cell.active && (cell.event$ | async)" (click)="onRemoveEventClick($event, i)" >
-        <mat-icon>cancel</mat-icon>
-</button>
+      </span>
+      <span *ngIf="cell.active && (cell.event$ | async)">
+        <button mat-icon-button disableRipple color="accent" class="edit-event" title="Изменить событие"
+                (click)="onEditEventClick($event, i)" >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button disableRipple class="remove-event" title="Удалить событие"
+                (click)="onRemoveEventClick($event, i)" >
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </span>
     </mat-grid-tile>
 </mat-grid-list>

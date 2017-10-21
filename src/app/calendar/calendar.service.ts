@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Happening, GridItem, EventDate } from './_models/';
+import { Happening, GridItem, EventDate, State } from './_models/';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import * as moment from 'moment';
 import 'moment/locale/ru';
 
@@ -10,7 +10,7 @@ export class CalendarService {
 
   private state: State;
   public newDate$: BehaviorSubject<moment.Moment>;
-  public day$ = new BehaviorSubject<string>('init');
+  public day$ = new BehaviorSubject<number>(undefined);
   public month$ = new BehaviorSubject<string>('init');
   public year$ = new BehaviorSubject<number>(0);
   public monthsA = 'января,февраля,марта,апреля,мая,июня,июля,августа,сентября,октября,ноября,декабря'.split(',');
@@ -40,7 +40,12 @@ export class CalendarService {
     })
   }
 
-  public move = (direction) => {
+  /**
+   * Переключить месяц
+   * @param  {string} direction - next/prev/today
+   * @returns void
+   */
+  public move = (direction: string):void => {
     if(direction === 'next'){
       this.state.month < 11
         ? this.newDate$.next(moment([this.state.year, this.state.month + 1, 1]))
@@ -49,6 +54,10 @@ export class CalendarService {
       this.state.month > 0
         ? this.newDate$.next(moment([this.state.year, this.state.month - 1, 1]))
         : this.newDate$.next(moment([this.state.year - 1, 11, 1]))
+    } else {
+      let today = moment(new Date);
+      this.day$.next(today.date());
+      this.newDate$.next(today);
     }
   }
 
@@ -56,7 +65,6 @@ export class CalendarService {
     item.event.next(undefined); // очистить прежнее событие
     this.state.events && this.state.events.forEach((event: Happening) => {
         if(EventDate.equal(item.date, event.date)){
-          console.info('Boom!');
           item.event.next(event);
         }
     });
@@ -65,6 +73,7 @@ export class CalendarService {
   public addEvent = (event: Happening): void => {debugger
     this.state.events.push(event);
     this.save();
+    this.newDate$.next(moment([this.state.year, this.state.month,1]));
   }
 
   public removeEvent = (date: EventDate): void => {
@@ -78,6 +87,11 @@ export class CalendarService {
     this.state.events.splice(i,1);
     this.save();
   }
+
+  /**
+   * Пост-обработчик, подчищающий костыли
+   */
+  public gridRendered = (): void => this.day$.next(undefined);
 
   private save = (): void => {
     this.$storage.store('Calendar',this.state);
@@ -122,21 +136,4 @@ export class CalendarService {
       text: 'bla-bla-bla bla-bla-bla bla-bla-bla bla-bla-bla',
     },
   ]
-}
-
-
-
-
-
-/**
- * Cостояние календаря для хранения в Localstorage
- */
-export class State {
-
-  constructor(
-    public events: Array<Happening>,
-    public year: number,
-    public month: number
-  ) {
-  }
 }

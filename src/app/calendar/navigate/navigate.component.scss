@@ -2,11 +2,19 @@
 
 :host {
     align-self: baseline;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 5px;
+    width: 100%;
 }
 .date {
   width: 130px;
   display: inline-block;
   top: 2px;
   position: relative;
+  color: $app-grey;
+}
+.today {
+  background-color: $app-superlight;
   color: $app-grey;
 }

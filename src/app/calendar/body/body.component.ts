@@ -39,27 +39,52 @@ export class BodyComponent implements OnInit {
       this.fillGrid(date);
     })
     // подписаться на события грида
-    let self = this;
-    let test = 'TEST'
     this.clicked$.subscribe((index: number) => {
-      //let el = this.gridElementsArray[index];
-      //let old = this.gridElementsArray[this.activeCellIndex];
-      //(el as any)._element.nativeElement.classList.add('selected');
-      //(old as any)._element.nativeElement.classList.remove('selected');
       this.setActiveCell(index);
     })
   }
-
+  /**
+   * Удалить событие
+   * @param  {} e
+   * @param  {} i
+   */
   public onRemoveEventClick = (e, i) => {
     let event = this.grid[i];
     this.$service.removeEvent(this.grid[i].date);
     this.grid[i].event.next(undefined);
   }
+  /**
+   * Редактировать событие
+   * @param  {} e
+   * @param  {} index
+   * @returns void
+   */
+  public onEditEventClick = (e, index): void => {
+    let event = this.grid[index].event.value;
+    let date = this.grid[index].date;
+    let dialogRef = this.$dialog.open(AddEventDialogComponent, {
+      width: '400px',
+      data: {date: date, event: event}
+    });
 
+    dialogRef.afterClosed().subscribe((result: Happening) => {
+      if(result){
+        this.grid[index].event.next(result);
+        this.$service.removeEvent(result.date);
+        this.$service.addEvent(result);
+      }
+    });
+  }
+  /**
+   * Добавить событие
+   * @param  {} e
+   * @param  {} index
+   * @returns void
+   */
   public onAddEventClick = (e, index): void => {
     let dialogRef = this.$dialog.open(AddEventDialogComponent, {
       width: '400px',
-      data: this.grid[index].date
+      data: {date: this.grid[index].date, event: null }
     });
 
     dialogRef.afterClosed().subscribe((result: Happening) => {
@@ -76,7 +101,7 @@ export class BodyComponent implements OnInit {
     this.grid[this.activeCellIndex].active = true;
   }
   /**
-   * Заполняет массив GridItem данными (пока без событий)
+   * Заполняет массив GridItem данными
    */
   private fillGrid = (day :moment.Moment) => {
 
@@ -112,6 +137,10 @@ export class BodyComponent implements OnInit {
       if (index >= firstDayIndex && index < firstDayIndex + day.daysInMonth()){
         item.dayOfMonth = index - firstDayIndex + 1;
         item.thisMonth = true;
+        if (item.dayOfMonth === this.$service.day$.value) {
+          item.active = true;
+          this.activeCellIndex = index;
+        }
       } else if (index < firstDayIndex){
         // заполнить видимые дни предыдущего месяца
         year = prevYear === thisYear ? thisYear : prevYear;
@@ -128,7 +157,7 @@ export class BodyComponent implements OnInit {
       item.date = new EventDate(year, month, item.dayOfMonth)
       this.$service.chechForEvent(item);
     });
-
+    this.$service.gridRendered();
   }
   ngOnInit() {
   }

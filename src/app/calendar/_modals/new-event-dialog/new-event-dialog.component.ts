@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { EventDate, Happening } from '../../_models/';
 import * as moment from 'moment';
 import { CalendarService } from '../../calendar.service';
-import {NgControl, Validators, FormBuilder} from '@angular/forms';
+import {NgControl, Validators, FormBuilder, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-new-event-dialog',
@@ -15,14 +15,17 @@ import {NgControl, Validators, FormBuilder} from '@angular/forms';
  */
 export class NewEventDialogComponent implements OnInit {
 
-  participants: string;
-  title: string;
-  text: string;
-  day: number;
-  month: number;
-  year: number;
-  months: Array<string> = moment.months();
-  m;
+  public participants: string;
+  public title: string;
+  public text: string;
+  public day: number;
+  public month: number;
+  public year: number;
+  public months: Array<string> = moment.months();
+  public m: any;
+
+  @ViewChild(NgForm)
+  private form: NgForm;
 
   constructor(
     @Inject(MAT_DIALOG_DATA)

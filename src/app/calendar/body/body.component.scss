@@ -1,40 +1,45 @@
 @import '../../app.theme';
 
 .mat-grid-tile {
-    border: 1px solid $app-light;
-    font-size: 12px;
-    color: $app-grey;
-    margin: 1px;
-    &.this-month {
-        background-color: $app-superlight;
-    }
-    &.active {
-        background-color:  lightcyan;
-        transition: all .5s ease-in-out;
-        .info {
-            color: $app-dark;
-        }
-    }
-    .info {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-    }
-    button {
+  border: 1px solid $app-light;
+  font-size: 12px;
+  color: $app-grey;
+  margin: 1px;
+  &.this-month {
+      background-color: $app-superlight;
+  }
+  &.active {
+      background-color:  lightcyan;
       transition: all .5s ease-in-out;
-      position: absolute;
-      bottom: 0px;
-      right: 0px;
+      .info {
+          color: $app-dark;
+      }
+  }
+  .info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  button {
+    transition: all .5s ease-in-out;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    &:hover {
+      color: $app-accent - 30%;
+    }
+    &.edit-event{
+    }
+    &.remove-event{
+      right: 30px;
+      color: lightcoral;
       &:hover {
-        color: $app-accent - 30%;
+        color:  red;
       }
-      &.add-event{
-      }
-      &.remove-event{
-        color: lightcoral;
-        &:hover {
-          color:  red;
-        }
+    }
+    mat-icon{
+      font-size: 20px;
     }
   }
 }
+
