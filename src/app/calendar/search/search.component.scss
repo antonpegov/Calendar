@@ -1,3 +1,85 @@
-:host {
+@import '../../app.theme';
 
+:host{
+  margin-right: 10px;
+}
+.search {
+  display: flex;
+  .search-icon mat-icon {
+    color: $app-grey + 30%;
+    position: relative;
+    //font-size: 30px;
+    //top: 10;
+    padding-right: 5px;
+    padding-top: 7px;
+    font-size: 23px;
+    cursor: default;
+  }
+}
+input {
+  //background-color: $app-superlight;
+  //border-color: $app-light;
+  padding: 2px;
+}
+button.clear {
+  position: absolute;
+  right: 18px;
+  margin-top: -2px;
+  mat-icon {
+    font-size: 20px;
+    color: $app-primary;
+  }
+}
+.result {
+  position: absolute;
+  width: 200px;
+  z-index: 10000;
+  background-color: $app-superlight;
+  //border: 1px solid #aaa;
+  box-shadow: -5px 5px 10px #ccc;
+  right: 14px;
+  visibility: hidden;
+  transition: .5s all cubic-bezier(0.215, 0.610, 0.355, 1);
+  opacity: 0;
+  max-height: 50%;
+  overflow: auto;
+  &.shown {
+    opacity:1;
+    visibility: visible;
+  }
+  ul {
+    list-style: none;
+    padding: 5px 20px;
+    text-align: left;
+    font-size: 14px;
+    color: $app-grey;
+    margin: 0;
+    li {
+      border-bottom: 1px solid $app-light;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: .5s all cubic-bezier(0.215, 0.610, 0.355, 1);
+      cursor: default;
+      .result-date{
+        color: #333;
+        font-weight: bold;
+        font-size: 12px;
+        display: block;
+        height: 15px;
+        cursor: pointer;
+        &:hover {
+          color: $app-accent;
+        }
+      }
+      .result-title {
+        cursor: default;
+      }
+    }
+    :hover{
+      //background-color: $app-light;
+    }
+    :last-child{
+      border-bottom: none;
+    }
+  }
 }

@@ -1,3 +1,23 @@
-<p>
-  search works!
-</p>
+<div class="search">
+  <span class="search-icon"><mat-icon>search</mat-icon></span>
+  <span class="search-input">
+    <input type="text" [(ngModel)]="searchString"
+          (focus)="showResult = true" (focusout)="showResult = false"
+          (keyup)=search(searchString)>
+    <button mat-icon-button class="clear" (click)="searchString = ''" *ngIf="searchString.length > 0">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </span>
+</div>
+<div class="result"
+    [ngClass]="{'shown': showResult && searchString.length > 0 && result.length > 0}">
+  <ul>
+    <li *ngFor="let item of result; let i = index;">
+      <span class="result-date" (click)="onSelect(event,i)"
+            title="Нажмите для перехода к выбранной дате">
+        {{item.date.day}} {{monthsA[item.date.month]}}
+      </span>
+      <span class="result-title">{{item.title}}</span>
+    </li>
+  </ul>
+</div>

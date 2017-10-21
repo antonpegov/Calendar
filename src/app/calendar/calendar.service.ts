@@ -8,7 +8,7 @@ import 'moment/locale/ru';
 @Injectable()
 export class CalendarService {
 
-  private state: State;
+  public state: State;
   public newDate$: BehaviorSubject<moment.Moment>;
   public day$ = new BehaviorSubject<number>(undefined);
   public month$ = new BehaviorSubject<string>('init');
@@ -45,7 +45,7 @@ export class CalendarService {
    * @param  {string} direction - next/prev/today
    * @returns void
    */
-  public move = (direction: string):void => {
+  public move = (direction: string, date?: EventDate):void => {
     if(direction === 'next'){
       this.state.month < 11
         ? this.newDate$.next(moment([this.state.year, this.state.month + 1, 1]))
@@ -54,6 +54,9 @@ export class CalendarService {
       this.state.month > 0
         ? this.newDate$.next(moment([this.state.year, this.state.month - 1, 1]))
         : this.newDate$.next(moment([this.state.year - 1, 11, 1]))
+    } else if (date) {
+      this.day$.next(date.day);
+      this.newDate$.next(moment([date.year, date.month, 1]))
     } else {
       let today = moment(new Date);
       this.day$.next(today.date());
@@ -70,7 +73,7 @@ export class CalendarService {
     });
   };
 
-  public addEvent = (event: Happening): void => {debugger
+  public addEvent = (event: Happening): void => {
     this.state.events.push(event);
     this.save();
     this.newDate$.next(moment([this.state.year, this.state.month,1]));
