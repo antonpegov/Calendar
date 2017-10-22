@@ -1,0 +1,38 @@
+<mat-card class="" id="toolbar" style="margin-left: 15%">
+  <header [@fallIn]="state">
+    <mat-icon (click)="onBackClick()" title="Назад">chevron_left</mat-icon>
+    <mat-icon (click)="onLogoutClick()" title="Выйти" style="font-size: 40px;">directions_run</mat-icon>
+  </header>
+  <form class="form" [@moveInLeft]="state">
+    <!--<h4>Заполните данные пользователя {{ auth.auth.displayName }}! </h4>-->
+      <h2>Немного о вас </h2>
+
+      <div class="form-group">
+        <label for="fname">Имя</label>
+        <input type="text" class="form-control" id="fname" required>
+      </div>
+
+      <div class="form-group">
+        <label for="lname">Фамилия</label>
+        <input type="text" class="form-control" id="lname" required>
+      </div>
+
+      <div class="form-group">
+        <label for="mname">Отчество</label>
+        <input type="text" class="form-control" id="mname" required>
+      </div>
+
+      <div class="form-group">
+        <label for='email'>Электронный адрес</label>
+        <input type="email" class="form-control" id="email" required>
+      </div>
+
+      <button mat-raised-button disableRipple color="accent" type="submit" class="submit">
+        Сохранить
+      </button>
+
+    <!-- <div class="providers">
+      <span *ngFor="let provider of providers | keys" class="{{provider.value}}">{{provider.key}}</span>
+    </div> -->
+  </form>
+</mat-card>

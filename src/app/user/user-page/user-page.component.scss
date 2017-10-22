@@ -1,0 +1,64 @@
+@import '../../app.theme.scss';
+
+
+:host {
+}
+.user-page {
+    background-color: $app-superlight;
+    justify-content: center;
+    // padding-top: 5%;
+    display: flex;
+    flex-flow: row wrap;
+    //height: 100%;
+    > div {
+        margin: 5%;
+    }
+    .photo {
+        img {
+            border: 10px solid $app-white;
+            border-radius: 200px;
+            background-color: $app-white;
+            position: relative;
+            top: 25px;
+            height: 250px;
+            width: 250px;
+        }
+    }
+    .profile{
+        .header {
+            padding-bottom: 10px;
+            color: $app-dark;
+        }
+        .item {
+            min-width: 350px;
+            margin-bottom: 10px;
+            .label {
+                color: $app-grey;
+                display: inline-block;
+                font-size: 16px;
+                font-weight: normal;
+                padding: 8px 2px;
+            }
+            .value {
+                background-color: $app-white;
+                border: 1px solid $app-light;
+                color: $app-dark;
+                border-radius: 3px;
+                font-size: 16px;
+                padding: 5px 10px;
+            }
+        }
+        .exit.btn {
+            float: right;
+            margin-top: 25px;
+            padding: 10px 55px;
+            background-color: $app-grey;
+            color: $app-superlight;
+            transition: all ease-in-out .5s;
+            &:hover {
+                background-color: $app-grey/1.2;
+                color: $app-white;
+            }
+        }
+    }
+}

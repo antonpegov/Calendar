@@ -1,0 +1,52 @@
+@import '../../app.theme.scss';
+
+mat-card {
+    padding:0;
+    width:70%;
+    header {
+        background: $app-accent;
+        text-align: left;
+        height: 50px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        mat-icon{
+            width:50px;
+            margin:0;
+            height: 50px;
+            display: inline-block;
+            color: white ;
+            font-size: 50px;
+            margin-right: 10px;
+            cursor: pointer;
+            &:hover{
+                color:#ccc
+            }
+        }
+    }
+}
+
+
+
+.form {
+    padding:3em;
+    margin:0;
+}
+
+#page img {
+    margin-top:30px;
+}
+
+h2 {
+    margin:0;
+}
+
+.providers{
+    margin-top:20px;
+}
+    .providers span {
+        display: inline-block;
+        margin: 20px 20px 20px 20px;
+        padding: 20px;
+        background-color: #eee;
+    }

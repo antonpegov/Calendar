@@ -10,13 +10,15 @@ import { AddEventDialogComponent, NewEventDialogComponent } from './_modals/';
 import { MatDialog } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { NgPipesModule } from 'ngx-pipes';
+import { UserModule } from '../user/user.module';
 
 
 @NgModule({
   imports: [
     AppCommonModule,
     FormsModule,
-    NgPipesModule
+    NgPipesModule,
+    UserModule
   ],
   declarations: [
     SearchComponent,

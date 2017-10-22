@@ -1,9 +1,12 @@
 <mat-card>
     <mat-toolbar color="primary">
+      <span>
+      <app-user-widget></app-user-widget>
       <button mat-raised-button color="accent" disableRipple (click)="onNewEventClick()">
         Добавить событие
       </button>
-      <app-cal-search></app-cal-search>
+    </span>
+    <span><app-cal-search></app-cal-search></span>
     </mat-toolbar>
   <app-cal-navigate style='float:left'></app-cal-navigate>
   <app-cal-body></app-cal-body>

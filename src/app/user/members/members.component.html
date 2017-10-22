@@ -1,0 +1,24 @@
+<div class="form-kontaner" id="toolbar" style="margin-left: 15%">
+  <header [@fallIn]="state">
+    <span (click)="userData()" class='glyphicon glyphicon-user' title="Данные пользователя"></span>
+    <span (click)="logout()" class="glyphicon glyphicon-log-out" title="Выход"></span>
+  </header>
+  <div id="page" [@moveInLeft]="state">
+    <h4>Дорбро пожаловать {{ auth.auth.displayName }}! </h4>
+    <img src="./assets/images/filler.png">
+  </div>
+</div>
+<mat-card>
+    <div class="user"></div>
+    <div class="buttons">
+      <span class="error" *ngIf="error">{{ error }}</span>
+      <button mat-raised-button disableRipple (click)="loginFacebook()" id="fb">Войти через Facebook</button><br>
+      <button mat-raised-button disableRipple (click)="loginGoogle()" id="google">Войти через Google</button><br>
+      <button mat-raised-button disableRipple (click)="loginTwitter()" id="twitter">Войти через Twitter</button><br>
+      <button mat-raised-button disableRipple [routerLink]="['/login-email']" id="email">Войти используя эл.почту</button><br>
+
+      <a [routerLink]="['/signup']" routerLinkActive="active" class="register">
+        <strong> Зарегистрироваться</strong>
+      </a>
+    </div>
+  </mat-card>

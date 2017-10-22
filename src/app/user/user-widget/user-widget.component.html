@@ -1,0 +1,10 @@
+<span class="photo" (click)="openUser()" *ngIf="appUser; else login;"
+      title="Открыть подробности">
+  <img [src]="appUser.photoUrl" alt="фото">
+</span>
+<ng-template #login>
+  <button mat-raised-button disableRipple class="login" (click)="onLoginClick()">
+    <mat-icon>account_circle</mat-icon>
+    Login
+  </button>
+</ng-template>

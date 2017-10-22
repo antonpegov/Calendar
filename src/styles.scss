@@ -1,5 +1,9 @@
 @import 'app/app.theme';
 
+body {
+  margin: 0;
+}
+
 mat-card {
 
     display: flex !important;

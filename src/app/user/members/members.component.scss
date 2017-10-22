@@ -1,0 +1,55 @@
+#toolbar {
+    padding:0;
+    width:70%;
+    margin-left:-35%;
+}
+
+header {
+    background:#3B8598;
+    width:100%;
+    text-align: right;
+    height: 70px;
+    padding: 18px
+}
+    header .glyphicon{
+        width:50px;
+        margin:0;
+        height: 50px; 
+        display: inline-block;
+        color: white ;
+        font-size: 30px;
+        margin-right: 10px;
+        cursor: pointer;  
+    }
+    header .glyphicon:hover{
+        color:#ccc 
+    }
+
+.basic-btn {
+    width:100px;
+    margin:0;
+}
+
+#page {
+    padding:3em;
+    margin:0;
+}
+
+#page img {
+    margin-top:30px;
+}
+
+h2 {
+    margin:0;
+}
+
+
+@media (max-width: 600px) {
+    #page {
+        padding:1em;
+    }
+    #toolbar {
+        width:90%;
+        margin-left: -45%;
+    }
+}

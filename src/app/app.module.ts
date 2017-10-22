@@ -6,10 +6,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ReversePipe } from 'ngx-pipes/src/app/pipes/array/reverse';
 import { AppCommonModule } from './app-common/app-common.module';
+import { UserModule } from './user/user.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { AddEventDialogComponent, NewEventDialogComponent } from './calendar/_modals/';
-import { SelectModule } from 'ng2-select';
+import { AppRoutingModule } from './app-routing.module';
+import { CalendarRoutingModule } from './calendar/calendar-routing.module';
+import { UserRoutingModule } from './user/user-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,10 +20,13 @@ import { SelectModule } from 'ng2-select';
   ],
   imports: [
     BrowserAnimationsModule,
-    AppCommonModule,
     BrowserModule,
-    SelectModule,
-    CalendarModule
+    AppCommonModule,
+    AppRoutingModule,
+    CalendarModule,
+    CalendarRoutingModule,
+    UserModule.forRoot(),
+    UserRoutingModule
   ],
   entryComponents: [
     AddEventDialogComponent,

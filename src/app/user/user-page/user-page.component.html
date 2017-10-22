@@ -1,0 +1,27 @@
+<!-- <img src="Scripts/NgApp/assets/user_page_tmp.jpg" style="margin-left: 200px;margin-top: 100px;" alt=""> -->
+
+<div class="user-page" *ngIf="appUser">
+  <div class="photo">
+      <img [src]="appUser.photo" alt="фото">
+  </div>
+  <div class="profile">
+    <div class="header"><h3>Профиль</h3></div>
+    <div class="item">
+      <div class="label">Фамилия</div>
+      <div class="value">{{appUser.fname}}</div>
+    </div>
+    <div class="item">
+      <div class="label">Имя</div>
+      <div class="value">{{appUser.lname}}</div>
+    </div>
+    <div class="item">
+      <div class="label">Отчество</div>
+      <div class="value">{{appUser.mname}}</div>
+    </div>
+    <div class="item">
+      <div class="label">Подразделение</div>
+      <div class="value">{{appUser.dep}}</div>
+    </div>
+    <div class="btn exit" (click)="exit()">Выйти</div>
+  </div>
+</div>

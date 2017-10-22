@@ -1,0 +1,17 @@
+<mat-card>
+
+  <!--<img src="assets/images/lock.svg" alt="lock">-->
+
+  <div class="lock"></div>
+  <div class="buttons">
+    <span class="error" *ngIf="error">{{ error }}</span>
+    <button mat-raised-button disableRipple (click)="loginFacebook()" id="fb">Войти через Facebook</button><br>
+    <button mat-raised-button disableRipple (click)="loginGoogle()" id="google">Войти через Google</button><br>
+    <button mat-raised-button disableRipple (click)="loginTwitter()" id="twitter">Войти через Twitter</button><br>
+    <button mat-raised-button disableRipple [routerLink]="['/login-email']" id="email">Войти используя эл.почту</button><br>
+
+    <a [routerLink]="['/signup']" routerLinkActive="active" class="register">
+      <strong> Зарегистрироваться</strong>
+    </a>
+  </div>
+</mat-card>

@@ -1,7 +1,4 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <!-- <h1>
-    Welcome to {{title}}!
-  </h1> -->
-  <app-calendar></app-calendar>
+<div  [@routerTransition]="getState(o)">
+  <!-- <app-calendar></app-calendar> -->
+  <router-outlet #o="outlet"></router-outlet>
 </div>

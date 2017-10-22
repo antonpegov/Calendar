@@ -1,0 +1,24 @@
+@import '../../app.theme.scss';
+
+.photo{
+  position: absolute;
+  left: 200px;
+  top: 7px;
+  img {
+    margin-left: 10px;
+    width: 45px;
+    margin-left: 10px;
+    border: 2px solid $app-light;
+    background-color: $app-light;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all ease-in-out .5s;
+    &:hover{
+        border: 2px solid $app-accent;
+    }
+  }
+}
+button {
+  background: #f5f5f5 !important;
+  color: #666 !important;
+}
