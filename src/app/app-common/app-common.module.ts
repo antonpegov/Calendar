@@ -10,7 +10,9 @@ import {
     MatButtonToggleModule,
     MatCardModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
 } from '@angular/material';
 @NgModule({
   imports: [
@@ -27,6 +29,8 @@ import {
     MatCardModule,
     MatGridListModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
     CommonModule
 ]
 })

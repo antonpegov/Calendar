@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { moveIn, fallIn } from '../router.animations';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-email',
@@ -12,32 +13,38 @@ import { moveIn, fallIn } from '../router.animations';
 })
 export class EmailComponent implements OnInit {
 
-  state: string = '';
-  error: any;
+  public loginForm: FormGroup;
+  public state: string = '';
+  public error: any;
 
-  constructor(public $afAuth: AngularFireAuth, private $router: Router) {
+  constructor(
+    private $formBuilder: FormBuilder,
+    public $afAuth: AngularFireAuth,
+    private $router: Router
+  ) {
+    this.loginForm = $formBuilder.group({
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(30)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]]
+    });
     this.$afAuth.authState.subscribe(auth => {
       if(auth){
-        this.$router.navigateByUrl('/members');
+        this.$router.navigateByUrl('/user/userdata');
       }
     });
   }
-
-  onSubmit(formData) {
-    if(formData.valid){
+  onSubmit() {
+    if(this.loginForm.valid){
       //console.log(formData.value)
-      this.$afAuth.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password).then(
+      this.$afAuth.auth.signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password).then(
         (success) => {
-          this.$router.navigate(['/members']);
+          this.$router.navigate(['/view']);
+          this.error = null;
         }).catch(
           (err) => {
             this.error = err;
         })
     }
   }
-
   ngOnInit() {
   }
-
-
 }

@@ -25,7 +25,10 @@ export class UserService {
 
   private createNewUserFromAuth = (auth: firebase.User) => {
     let user = new User();
-    if(auth.photoURL) user.photoUrl = auth.photoURL;
+    user.photoUrl = auth.photoURL ?  auth.photoURL : this.defaultPhotoUrl;
+    user.email = auth.email;
     return user;
   }
+
+  private defaultPhotoUrl = '/assets/images/man.svg';
 }

@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { UserPageComponent } from './user-page/user-page.component';
 import { UserWidgetComponent } from './user-widget/user-widget.component';
 import { AppComponent } from '../app.component';
 import { LoginComponent } from './login/login.component';
 import { EmailComponent } from './email/email.component';
 import { SignupComponent } from './signup/signup.component';
-import { MembersComponent } from './members/members.component';
 import { UserdataComponent } from './userdata/userdata.component';
 import { AuthGuardService, UserService } from './_services/';
 import { AngularFireModule } from 'angularfire2';
@@ -43,9 +41,7 @@ export const firebaseConfig = {
     LoginComponent,
     EmailComponent,
     SignupComponent,
-    MembersComponent,
     UserdataComponent,
-    UserPageComponent,
     UserWidgetComponent,
     UserComponent
   ],

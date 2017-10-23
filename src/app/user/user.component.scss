@@ -1,0 +1,61 @@
+@import '../app.theme.scss';
+
+::ng-deep a.exit-from-user {
+  mat-icon {
+    position: absolute;
+    right: 25px;
+    top: 16px;
+    font-size: 34px;
+    color: gray;
+  }
+}
+::ng-deep mat-card.user-card {
+  padding:0;
+  width:70%;
+  margin-left: 15%;
+  margin-top: 10%;
+  min-width: 400px;
+  header {
+      background: $app-accent;
+      text-align: left;
+      height: 50px;
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+      mat-icon{
+          width:50px;
+          margin:0;
+          height: 50px;
+          display: inline-block;
+          color: white ;
+          font-size: 50px;
+          margin-right: 10px;
+          cursor: pointer;
+          &:hover{
+              color:#ccc
+          }
+          &.exit {
+            font-size: 35px;
+            top: 5px;
+            left: 15px;
+            position: relative;
+          }
+      }
+  }
+  form {
+    padding: 50px;
+    display: flex;
+    flex-flow: column;
+    color: gray;
+    .title {
+      margin-top: 0;
+      text-align: center;
+    }
+    mat-form-field {
+      width: 100% !important;
+    }
+  }
+  button {
+    margin-top: 15px;
+  }
+}

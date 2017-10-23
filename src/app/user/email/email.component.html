@@ -1,21 +1,23 @@
-<div class="form-container">
-  <a  id="goback" routerLink="/login">Назад</a>
-
-  <h2>Вход</h2>
-
-  <span class="error" *ngIf="error" [@fallIn]="state"> {{ error }} </span>
-
-  <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
-    
-    <input type="text" placeholder="Email адрес" (ngModel)='email' name='email' class="txt" required>
-    <input type="password" placeholder="Пароль" (ngModel)='password' name='password' class="txt" required>
-    
-    <button type="submit" [disabled]="!formData.valid" class="basic-btn">Войти</button>
-    
-    <a routerLink="/singup" class="alc">
-    Нет регистрации? 
-    <strong> Зарегистрируйтесь здесь!</strong>
-  </a>
-
+<mat-card  class="user-card" [@fallIn]="state" (@fallIn.done)="ready=true" >
+  <header>
+    <a href=""  [routerLink]="['/user/login']" class="back"><mat-icon title="Назад">chevron_left</mat-icon></a>
+    <mat-icon title=""></mat-icon>
+  </header>
+  <form class="form" (ngSubmit)="onSubmit()" [formGroup]="loginForm"
+         [hidden]="ready ? undefined : true">
+    <h2 class="title">Введите логин и пароль</h2>
+    <mat-form-field>
+      <input  matInput type="email" placeholder="Aдрес электронной почты" formControlName='email'>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Пароль" formControlName='password'>
+    </mat-form-field>
+    <button mat-raised-button disableRipple color="accent" type="submit"
+          class="submit" [disabled]="!loginForm.valid">
+      Войти в систему
+    </button>
+    <div *ngIf="error" style="color:red;font-size: 14px; margin-top: 10px;">
+      Призошла ошибка, проверьте правильность введенных данных.
+    </div>
   </form>
-</div>
+</mat-card>

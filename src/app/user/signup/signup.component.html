@@ -1,16 +1,26 @@
-<div class="form-container">
-  <a  id="goback" routerLink="/login">Назад</a>
-
-  <h2>Регистрация нового пользователя</h2>
-
-  <span class="error" *ngIf="error" [@fallIn]="state"> {{ error }} </span>
-
-  <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
-    
-    <input type="text" placeholder="Email адрес" (ngModel)='email' name='email' class="txt" required>
-    <input type="password" placeholder="Пароль" (ngModel)='password' name='password' class="txt" required>
-    
-    <button type="submit" [disabled]="!formData.valid" class="basic-btn">Зарегистрироваться</button>
-    
+<mat-card  class="user-card" [@fallIn]="state" (@fallIn.done)="ready=true" >
+  <header >
+    <a href=""  [routerLink]="['/user/login']" class="back"><mat-icon title="Назад">chevron_left</mat-icon></a>
+    <mat-icon title="" style="font-size: 40px;"></mat-icon>
+  </header>
+  <form class="form" (ngSubmit)="onSubmit()" [formGroup]="regForm"
+         [hidden]="ready ? undefined : true">
+    <h2 class="title">Регистрация нового пользователя</h2>
+    <mat-form-field>
+      <input  matInput type="email" placeholder="Aдрес электронной почты"
+            formControlName='email' required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Пароль"
+            formControlName='password' required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Подтверждение пароль"
+            formControlName="password_repeat" required>
+    </mat-form-field>
+    <button mat-raised-button disableRipple color="accent" type="submit"
+          class="submit" [disabled]="!regForm.valid">
+      Зарегистрироваться
+    </button>
   </form>
-</div>
+</mat-card>
