@@ -6,7 +6,7 @@ import { Happening } from "./";
 export class State {
 
   constructor(
-    public events: Array<Happening>,
+    public events: Array<any>,
     public year: number,
     public month: number
   ) {

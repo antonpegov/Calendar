@@ -13,6 +13,7 @@ import { AddEventDialogComponent, NewEventDialogComponent } from './calendar/_mo
 import { AppRoutingModule } from './app-routing.module';
 import { CalendarRoutingModule } from './calendar/calendar-routing.module';
 import { UserRoutingModule } from './user/user-routing.module';
+import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UserRoutingModule } from './user/user-routing.module';
     CalendarModule,
     CalendarRoutingModule,
     UserModule.forRoot(),
-    UserRoutingModule
+    UserRoutingModule,
+    AngularFirestoreModule
   ],
   entryComponents: [
     AddEventDialogComponent,

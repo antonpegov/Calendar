@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Happening } from './_models/index';
 import { MatDialog } from '@angular/material';
-import { CalendarService } from './calendar.service';
+import { CalendarService } from './_services/calendar.service';
 import { NewEventDialogComponent } from './_modals/';
 
 @Component({

@@ -1,4 +1,4 @@
-<mat-card class="user-card">
+<mat-card class="user-card" *ngIf="ready">
   <header [@fallIn]="state">
     <a href=""  [routerLink]="['/view']" class="back"><mat-icon title="Назад">chevron_left</mat-icon></a>
     <mat-icon (click)="onLogoutClick()" title="Выйти" class="exit">directions_run</mat-icon>
@@ -7,7 +7,7 @@
     <h2 class="title">Расскажите немного о себе</h2>
     <mat-form-field><input matInput formControlName ="nickname" placeholder="Псевдоним, видимый другим пользователям"></mat-form-field>
     <mat-form-field><input matInput formControlName ="fname" placeholder="Имя"></mat-form-field>
-    <mat-form-field><input matInput formControlName="lname" placeholder="Фамилия"></mat-form-field>
+    <mat-form-field><input matInput formControlName="sname" placeholder="Фамилия"></mat-form-field>
     <mat-form-field><input matInput formControlName="mname" placeholder="Отчество"></mat-form-field>
     <mat-form-field><input matInput formControlName="email" placeholder="Адрес электронной почты"></mat-form-field>
     <div class="providers">

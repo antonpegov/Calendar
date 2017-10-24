@@ -1,7 +1,7 @@
 import { Component, OnInit, QueryList, ViewChildren, ElementRef, Inject } from '@angular/core';
 import {MatGridTile, MatDialog } from '@angular/material';
 import { GridItem, EventDate, Happening } from '../_models/';
-import { CalendarService } from '../calendar.service';
+import { CalendarService } from '../_services/calendar.service';
 import { Subject, Observable } from 'rxjs';
 import * as moment from 'moment';
 import { AddEventDialogComponent } from '../_modals/';
@@ -50,7 +50,7 @@ export class BodyComponent implements OnInit {
    */
   public onRemoveEventClick = (e, i) => {
     let event = this.grid[i];
-    this.$service.removeEvent(this.grid[i].date);
+    this.$service.removeEvent(this.grid[i].event.value);
     this.grid[i].event.next(undefined);
   }
   /**
@@ -70,7 +70,7 @@ export class BodyComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: Happening) => {
       if(result){
         this.grid[index].event.next(result);
-        this.$service.removeEvent(result.date);
+        this.$service.removeEvent(result);
         this.$service.addEvent(result);
       }
     });
@@ -155,7 +155,7 @@ export class BodyComponent implements OnInit {
         console.error('Осталась не обрабьботанная дата!');
       }
       item.date = new EventDate(year, month, item.dayOfMonth)
-      this.$service.chechForEvent(item);
+      this.$service.checkForEvent(item);
     });
     this.$service.gridRendered();
   }

@@ -4,13 +4,15 @@ import { SearchComponent } from './search/search.component';
 import { NavigateComponent } from './navigate/navigate.component';
 import { BodyComponent} from './body/body.component';
 import { CalendarComponent } from './calendar.component';
-import { CalendarService } from './calendar.service';
+import { CalendarService } from './_services/calendar.service';
 import { Ng2Webstorage, LocalStorageService, SessionStorageService} from "ngx-webstorage";
 import { AddEventDialogComponent, NewEventDialogComponent } from './_modals/';
 import { MatDialog } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { NgPipesModule } from 'ngx-pipes';
 import { UserModule } from '../user/user.module';
+import { DataService } from './_services/';
+
 
 
 @NgModule({
@@ -18,7 +20,7 @@ import { UserModule } from '../user/user.module';
     AppCommonModule,
     FormsModule,
     NgPipesModule,
-    UserModule
+    UserModule,
   ],
   declarations: [
     SearchComponent,
@@ -33,8 +35,9 @@ import { UserModule } from '../user/user.module';
   ],
   providers:[
     MatDialog,
+    DataService,
     CalendarService,
-    LocalStorageService
+    LocalStorageService,
   ]
 })
 export class CalendarModule { }

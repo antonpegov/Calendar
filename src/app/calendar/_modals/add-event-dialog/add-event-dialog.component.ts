@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { EventDate, Happening } from '../../_models/';
 import * as moment from 'moment';
-import { CalendarService } from '../../calendar.service';
+import { CalendarService } from '../../_services/calendar.service';
 import { IModalData } from '../../_models/i-modal-data';
 
 @Component({

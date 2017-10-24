@@ -12,9 +12,10 @@
 ::ng-deep mat-card.user-card {
   padding:0;
   width:70%;
-  margin-left: 15%;
+  margin: auto;
   margin-top: 10%;
   min-width: 400px;
+  max-width: 800px;
   header {
       background: $app-accent;
       text-align: left;

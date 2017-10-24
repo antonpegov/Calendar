@@ -14,6 +14,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { UserComponent } from './user.component';
 import { RouterModule } from '@angular/router';
 import { AppCommonModule } from '../app-common/app-common.module';
+import { DataService } from './_services/data.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDMUjrohj0dqWEM3mqU7VXPkRLPdJc8rL8",
@@ -51,7 +52,8 @@ export const firebaseConfig = {
   providers: [
     //UserService, не создаём провайдер, передав эту функцию верхнему модклю
     AngularFireAuth,
-    AuthGuardService
+    AuthGuardService,
+    DataService
   ]
 })
 export class UserModule {

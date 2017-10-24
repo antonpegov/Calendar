@@ -17,6 +17,7 @@ import { FormGroup, FormControl, Form, FormBuilder, Validators } from '@angular/
 })
 export class UserdataComponent implements OnInit {
 
+  public ready: boolean = false; // костылик для торможения рендеринга
   public dataForm : FormGroup;
   public fbUser: firebase.User;
   public state: string = '';
@@ -38,20 +39,25 @@ export class UserdataComponent implements OnInit {
     //   }
     // });
     this.$user.currentUser$.filter(u=>u!==undefined).subscribe((user: User) =>{
-      this.user = user;
-      this.email = user.email;
+      this.ready = true;
+      //this.email = user.email;
       this.dataForm = $formBuilder.group({
-        nickname: ['',[Validators.maxLength(15)]],
-        fname: ['',[Validators.maxLength(15), Validators.pattern("[a-zA-Zа-яА-Я]*")]],
-        lname: ['',[Validators.maxLength(15), Validators.pattern("[a-zA-Zа-яА-Я]*")]],
-        mname: ['',[Validators.maxLength(15), Validators.pattern("[a-zA-Zа-яА-Я]*")]],
-        email: [this.user.email, [Validators.email, Validators.maxLength(30),Validators.minLength(0) ]]
+        nickname: [user.nickname,[Validators.maxLength(15)]],
+        fname: [user.fname, [Validators.maxLength(15), Validators.pattern("[a-zA-Zа-яА-Я]*")]],
+        sname: [user.sname, [Validators.maxLength(15), Validators.pattern("[a-zA-Zа-яА-Я]*")]],
+        mname: [user.mname, [Validators.maxLength(15), Validators.pattern("[a-zA-Zа-яА-Я]*")]],
+        email: [user.email, [Validators.email, Validators.maxLength(30),Validators.minLength(0) ]]
       })
     })
 
   }
-  onSubmit(formData: FormGroup){
-    debugger
+  onSubmit(){
+    let ctrls = this.dataForm.controls;
+    let newData = <any>{};
+    for (let prop in this.dataForm.controls) {
+      if (!ctrls[prop].untouched) newData[prop] = ctrls[prop].value;
+    }
+    this.$user.updateUserData(newData);
   }
 
   onLogoutClick() {

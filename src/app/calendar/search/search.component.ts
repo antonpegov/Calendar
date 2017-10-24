@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Happening } from '../_models/';
-import { CalendarService } from '../calendar.service';
+import { CalendarService } from '../_services/calendar.service';
+import { DataService } from '../_services/';
 
 @Component({
   selector: 'app-cal-search',
@@ -15,17 +16,31 @@ export class SearchComponent implements OnInit {
   public searchString: string = '';
   public monthsA: Array<string>;
 
-  constructor(private $service: CalendarService) {
+  constructor(
+    private $service: CalendarService,
+    private $data: DataService
+  ) {
     this.events = $service.state.events;
     this.monthsA = $service.monthsA;
   }
 
   public search = (str: string) => {
     this.result = new Array<Happening>();
-    this.events.forEach(event => {
-      if (event.title.toLowerCase().indexOf(str.toLowerCase()) > -1)
-        this.result.push(event);
-    })
+    if(this.$data.err){
+      this.events.forEach(event => {
+        if (event.title.toLowerCase().indexOf(str.toLowerCase()) > -1)
+          this.result.push(event);
+      })
+    } else {
+      // взять из базы данных
+      this.$data.find(str).subscribe( res => {
+        // БАМ! Оказывается Firebase не умеет производить поиск по вхождению! OMFG...
+        res.forEach(event => {
+          if (event.title.toLowerCase().indexOf(str.toLowerCase()) > -1)
+            this.result.push(event);
+        })
+      });
+    }
 
 
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { MatButton } from '@angular/material';
-import { CalendarService } from '../calendar.service';
+import { CalendarService } from '../_services/calendar.service';
 
 @Component({
   selector: 'app-cal-navigate',
