@@ -59,7 +59,7 @@ export class BodyComponent implements OnInit {
    * @param  {} index
    * @returns void
    */
-  public onEditEventClick = (e, index): void => {
+  public onEditEventClick = (e, index): void => {debugger
     let event = this.grid[index].event.value;
     let date = this.grid[index].date;
     let dialogRef = this.$dialog.open(AddEventDialogComponent, {

@@ -121,10 +121,11 @@ export class CalendarService {
   };
 
   public removeEvent = (event: Happening): void => {
+    console.log(`Starting event removal (id='${event.id}')...`)
+    let i: number;
     if(!this.$data.err){
       this.$data.remove(event.id);
     } else {
-      let i: number;
       for (let {item,index} of this.state.events.map((item, index) => ({ item, index }))){
         if (EventDate.equal(item.date, event.date)){
           i = index;

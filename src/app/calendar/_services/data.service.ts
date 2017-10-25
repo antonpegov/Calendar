@@ -34,11 +34,15 @@ export class DataService {
   }
 
   remove(id: string){
-    if(!id) return;
-    this.eventCollection.doc(id).delete().then(
-      (success) => console.log('event deleted...'),
-      (err) => console.warn(err)
-    )
+    if(!id) {
+      console.warn('No event id for removal!')
+      return;
+    } else {
+      this.eventCollection.doc(id).delete().then(
+        (success) => console.log(`Deleted event with id "${id}"...`),
+        (err) => console.warn(err)
+      )
+    }
   }
 
   all = () => this.userEvents.valueChanges()

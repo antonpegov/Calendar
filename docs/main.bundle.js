@@ -378,7 +378,7 @@ var AddEventDialogComponent = (function () {
         }
     }
     AddEventDialogComponent.prototype.onSubmitClick = function () {
-        var event = new __WEBPACK_IMPORTED_MODULE_2__models___["c" /* Happening */](this.date, this.participants ? this.participants.split(',') : [], this.title, this.text);
+        var event = new __WEBPACK_IMPORTED_MODULE_2__models___["c" /* Happening */](this.date, this.participants ? this.participants.split(',') : [], this.title, this.text, this.data.event && this.data.event.uid, this.data.event && this.data.event.id);
         this.dialogRef.close(event);
     };
     AddEventDialogComponent.prototype.makeArray = function (str) {
@@ -810,11 +810,12 @@ var CalendarService = (function () {
             _this.newDate$.next(__WEBPACK_IMPORTED_MODULE_4_moment__([_this.state.year, _this.state.month, 1]));
         };
         this.removeEvent = function (event) {
+            console.log("Starting event removal (id='" + event.id + "')...");
+            var i;
             if (!_this.$data.err) {
                 _this.$data.remove(event.id);
             }
             else {
-                var i = void 0;
                 for (var _i = 0, _a = _this.state.events.map(function (item, index) { return ({ item: item, index: index }); }); _i < _a.length; _i++) {
                     var _b = _a[_i], item = _b.item, index = _b.index;
                     if (__WEBPACK_IMPORTED_MODULE_1__models___["a" /* EventDate */].equal(item.date, event.date)) {
@@ -980,9 +981,13 @@ var DataService = (function () {
         }, function (err) { return console.warn(err); });
     };
     DataService.prototype.remove = function (id) {
-        if (!id)
+        if (!id) {
+            console.warn('No event id for removal!');
             return;
-        this.eventCollection.doc(id).delete().then(function (success) { return console.log('event deleted...'); }, function (err) { return console.warn(err); });
+        }
+        else {
+            this.eventCollection.doc(id).delete().then(function (success) { return console.log("Deleted event with id \"" + id + "\"..."); }, function (err) { return console.warn(err); });
+        }
     };
     DataService.prototype.init = function (uid) {
         var _this = this;
@@ -1107,6 +1112,7 @@ var BodyComponent = (function () {
          * @returns void
          */
         this.onEditEventClick = function (e, index) {
+            debugger;
             var event = _this.grid[index].event.value;
             var date = _this.grid[index].date;
             var dialogRef = _this.$dialog.open(__WEBPACK_IMPORTED_MODULE_6__modals___["a" /* AddEventDialogComponent */], {

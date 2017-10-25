@@ -42,7 +42,10 @@ export class AddEventDialogComponent implements OnInit {
     let event = new Happening(
       this.date,
       this.participants ? this.participants.split(',') : [],
-      this.title, this.text
+      this.title,
+      this.text,
+      this.data.event && this.data.event.uid,
+      this.data.event && this.data.event.id
     );
     this.dialogRef.close(event);
   }
